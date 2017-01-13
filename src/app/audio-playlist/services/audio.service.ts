@@ -27,7 +27,7 @@ export class AudioService {
         this.audio.addEventListener('pause', this.setPlayerStatus, false);
         this.audio.addEventListener('progress', this.calculatePercentLoaded, false);
         this.audio.addEventListener('waiting', this.setPlayerStatus, false);
-        // this.audio.addEventListener('ended', this.playNextTrack, false);
+        this.audio.addEventListener('ended', this.setPlayerStatus, false);
     }
 
     private calculateTime = (evt) => {
@@ -55,6 +55,9 @@ export class AudioService {
                 break;
             case 'waiting':
                 this.playerStatus.next('loading');
+                break;
+            case 'ended':
+                this.playerStatus.next('ended');
                 break;
             default:
                 this.playerStatus.next('paused');

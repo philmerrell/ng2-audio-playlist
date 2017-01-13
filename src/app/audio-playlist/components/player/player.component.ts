@@ -15,14 +15,15 @@ export class PlayerComponent implements OnChanges, OnInit {
 
   constructor(public audioService: AudioService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
     let nextTrack = changes['track'].currentValue;
-    console.log(nextTrack);
-    // console.log('Changes: ', changes);
     this.audioService.setCurrentTrack(nextTrack);
+  }
+
+  public toggleAudio() {
+      this.audioService.toggleAudio();
   }
 
 }
