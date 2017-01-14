@@ -14,7 +14,7 @@ export class AudioService {
     public percentElapsed: BehaviorSubject<number> = new BehaviorSubject(0);
     public percentLoaded: BehaviorSubject<number> = new BehaviorSubject(0);
     public playerStatus: BehaviorSubject<string> = new BehaviorSubject('paused');
-    public currentTrack: BehaviorSubject<Track> = new BehaviorSubject(new Track(null, null, null, null, null, null));
+    public currentTrack: BehaviorSubject<Track> = new BehaviorSubject(new Track(null, null, null, null, null));
 
     constructor() {
         this.audio = new Audio();
@@ -39,10 +39,14 @@ export class AudioService {
     }
 
     private calculatePercentLoaded = (evt) => {
-        let b = this.audio.buffered.end(0);
-        let d = this.audio.duration;
-        let percent = ((b / d) * 100);
-        this.setPercentLoaded(percent);
+        try {
+            let b = this.audio.buffered.end(0);
+            let d = this.audio.duration;
+            let percent = ((b / d) * 100);
+            this.setPercentLoaded(percent);
+        } catch (err) {
+            this.setPercentLoaded(0);
+        }
     }
 
     private setPlayerStatus = (evt) => {

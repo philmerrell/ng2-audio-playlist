@@ -1,11 +1,14 @@
 <div class="d-flex flex-row justify-content-start align-items-center">
   <div class="p-2">
-    <button (click)="toggleAudio()" type="button" style="height: 50px; width: 50px;" class="btn btn-primary btn-lg rounded-circle">
-
-    </button>
+    {{ track.artist }}<br>
+    {{ track.song }}
+    <!--{{ timeElapsed }} {{ timeRemaining }}-->
   </div>
   <div class="p-2">
-    Song Artist<br>
-    Song Title
+    <button (click)="toggleAudio()" [ngSwitch]="playerStatus" [disabled]="playerStatus === 'loading'" type="button" class="btn btn-link">
+      <i *ngSwitchCase="'paused'" class="fa fa-2x fa-play" aria-hidden="true"></i>
+      <i *ngSwitchCase="'playing'" class="fa fa-2x fa-pause" aria-hidden="true"></i>
+      <i *ngSwitchCase="'loading'" class="fa fa-2x fa-circle-o-notch fa-spin fa-fw"></i>
+    </button>
   </div>
 </div>

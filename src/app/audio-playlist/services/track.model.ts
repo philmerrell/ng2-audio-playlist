@@ -3,20 +3,16 @@
 export class Track {
     audioUrl: string;
     image: string;
-    title: string;
-    dateString: string;
-    date: Date;
-    // dateFromNow: string;
-    text: any;
+    artist: string;
+    song: string;
     index: number;
 
-    constructor(url, image, title, dateString, text, index) {
+    constructor(url, artist, song, image, index) {
         this.audioUrl = url;
         this.image = image;
-        this.title = title;
-        this.date = new Date(dateString);
-        // this.dateFromNow = moment(this.date).fromNow();
-        this.text = text;
+        this.artist = artist;
+        this.song = song;
         this.index = index;
     }
+
 }

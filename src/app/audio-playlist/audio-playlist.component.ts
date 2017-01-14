@@ -11,10 +11,10 @@ export class AudioPlaylistComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.currentTrack = new Track('http://s3.amazonaws.com/Treefort-Music-Fest/delicatesteve.mp3', 'Delicate Steve', '', '', '', 1);
+    this.currentTrack = new Track('http://s3.amazonaws.com/Treefort-Music-Fest/delicatesteve.mp3', 'Delicate Steve', 'Another Song', '', 1);
 
     setTimeout(() => {
-      this.currentTrack = new Track('http://s3.amazonaws.com/Treefort-Music-Fest/why.mp3', 'Why?', '', '', '', 1);
+      this.currentTrack = new Track('http://s3.amazonaws.com/Treefort-Music-Fest/why.mp3', 'Why?', 'This Song', '', 2);
     }, 3000);
   }
 

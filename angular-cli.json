@@ -19,7 +19,8 @@
       "mobile": false,
       "styles": [
         "styles.sass",
-        "../node_modules/bootstrap/scss/bootstrap.scss"
+        "../node_modules/bootstrap/scss/bootstrap.scss",
+        "../node_modules/font-awesome/scss/font-awesome.scss" 
       ],
       "scripts": [],
       "environments": {
@@ -29,7 +30,9 @@
       }
     }
   ],
-  "addons": [],
+  "addons": [
+    "../node_modules/font-awesome/fonts/*.+(otf|eot|svg|ttf|woff|woff2)"
+  ],
   "packages": [],
   "e2e": {
     "protractor": {
