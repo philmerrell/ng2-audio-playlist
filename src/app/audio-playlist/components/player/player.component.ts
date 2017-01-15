@@ -25,6 +25,8 @@ export class PlayerComponent implements OnChanges, OnInit {
     this.getPlayerStatus();
     this.getTimeElapsed();
     this.getTimeRemaining();
+    this.getPercentLoaded();
+    this.getPercentElapsed();
   }
 
   ngOnChanges(changes: SimpleChanges) {
