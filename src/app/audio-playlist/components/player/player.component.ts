@@ -63,4 +63,9 @@ export class PlayerComponent implements OnChanges, OnInit {
       .debounceTime(100)
       .subscribe(status => this.playerStatus = status);
   }
+
+  public seekAudio(event) {
+    let position = event.srcElement.value / (100 / this.audioService.getAudio().duration);
+    this.audioService.seekAudio(position);
+  }
 }

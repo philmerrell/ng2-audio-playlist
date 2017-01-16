@@ -13,4 +13,6 @@
       <i *ngSwitchCase="'loading'" class="fa fa-2x fa-circle-o-notch fa-spin fa-fw"></i>
     </button>
   </div>
+  <input type="range" min="0" max="100" (change)="seekAudio($event)" [value]="percentElapsed">
+
 </div>
