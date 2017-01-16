@@ -6,8 +6,7 @@ import { Track } from '../../services/track.model';
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
-  styleUrls: ['./player.component.sass'],
-  providers: [ AudioService ]
+  styleUrls: ['./player.component.sass']
 })
 export class PlayerComponent implements OnChanges, OnInit {
   @Output() playerEvent: BehaviorSubject<string>;
