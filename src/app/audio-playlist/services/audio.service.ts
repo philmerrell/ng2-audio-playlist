@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs/Rx';
 import { Track } from './track.model';
-// import { PlaylistService } from './playlist.service';
-
-
 
 @Injectable()
 export class AudioService {
