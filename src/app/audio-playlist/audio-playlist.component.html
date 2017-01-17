@@ -1,2 +1,11 @@
 <app-player [track]="currentTrack"></app-player>
-<app-playlist></app-playlist>
+<div class="list-group">
+  <a href="#" *ngFor="let track of playlist" (click)="playTrack(track)" [class.active]="track === currentTrack" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ track.artist }}</h5>
+      <small>3 days ago</small>
+    </div>
+    <p class="mb-1">{{ track.song }}</p>
+    <small>Donec id elit non mi porta.</small>
+  </a>
+</div>

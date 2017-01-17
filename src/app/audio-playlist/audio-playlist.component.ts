@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Track } from './services/track.model';
 import { AudioService } from './services/audio.service';
+import { PlaylistService } from './services/playlist.service';
 
 @Component({
   selector: 'app-audio-playlist',
@@ -8,18 +9,16 @@ import { AudioService } from './services/audio.service';
   styleUrls: ['./audio-playlist.component.sass']
 })
 export class AudioPlaylistComponent implements OnInit {
-  public playerStatus: string;
+  @Input() playlist: Track[];
+
   public currentTrack: Track;
+  private Status: { Queued, Initiated };
 
   constructor(private audioService: AudioService) { }
 
   ngOnInit() {
+    this.currentTrack = this.playlist[0];
     this.getPlayerStatus();
-    this.currentTrack = new Track('http://s3.amazonaws.com/Treefort-Music-Fest/delicatesteve.mp3', 'Delicate Steve', 'Another Song', '', 1);
-
-    setTimeout(() => {
-      this.currentTrack = new Track('http://s3.amazonaws.com/Treefort-Music-Fest/why.mp3', 'Why?', 'This Song', '', 2);
-    }, 3000);
   }
 
   public getPlayerStatus() {
@@ -27,12 +26,22 @@ export class AudioPlaylistComponent implements OnInit {
       .debounceTime(100)
       .subscribe((status) => {
         if (status === 'ended') {
-          console.log('Track ended');
+          this.checkPlaylist();
         }
-        this.playerStatus = status;
-        console.log(status);
       });
   }
 
-}
+  public playTrack(track) {
+    this.currentTrack = track;
+  }
 
+  public checkPlaylist() {
+    let progress = this.currentTrack.index + 1;
+    if (progress === this.playlist.length) {
+      // stop audio 
+    } else {
+      this.currentTrack = this.playlist[progress];
+    }
+  }
+
+}

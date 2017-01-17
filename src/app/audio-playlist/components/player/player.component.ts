@@ -29,8 +29,12 @@ export class PlayerComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    let nextTrack = changes['track'].currentValue;
-    this.audioService.setCurrentTrack(nextTrack);
+    console.log(changes);
+    if (changes['track'].currentValue) {
+      let nextTrack = changes['track'].currentValue;
+      this.audioService.setCurrentTrack(nextTrack);
+    }
+
   }
 
   public toggleAudio() {

@@ -75,7 +75,7 @@ export class AudioService {
 
     public setAudio(src): void {
         this.audio.src = src;
-        this.audio.play();
+        this.playAudio();
     }
 
     public playAudio(): void {
@@ -98,19 +98,6 @@ export class AudioService {
         this.setAudio(track.audioUrl);
         this.currentTrack.next(track);
     }
-
-    // TODO: Refactor to playlist service
-    // public playNextTrack = () => {
-    //     let finished;
-    //     let tracks;
-    //     this.getCurrentTrack().subscribe(track => finished = track);
-    //     this.playlistService.getPlaylist().subscribe(playlist => tracks = playlist);
-    //     if(finished.index + 1 !== tracks.length) {
-    //         this.setCurrentTrack(tracks[finished.index + 1])
-    //     } else {
-    //         // stop audio
-    //     }
-    // }
 
     private setTimeElapsed(ct: number): void {
         let seconds     = Math.floor(ct % 60),
@@ -140,11 +127,11 @@ export class AudioService {
     }
 
     private setPercentElapsed(d: number, ct: number): void {
-        this.percentElapsed.next(( Math.floor(( 100 / d ) * ct )));
+        this.percentElapsed.next(( Math.floor(( 100 / d ) * ct )) || 0 );
     }
 
     private setPercentLoaded(p): void {
-        this.percentLoaded.next(parseInt(p, 10));
+        this.percentLoaded.next(parseInt(p, 10) || 0 );
     }
 
     public getPercentLoaded(): Observable<number> {
