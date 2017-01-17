@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
-import { AudioService } from '../../services/audio.service';
-import { Track } from '../../services/track.model';
+import { AudioService } from '../services/audio.service';
+import { Track } from '../services/track.model';
 
 @Component({
   selector: 'app-player',
