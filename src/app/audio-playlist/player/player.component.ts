@@ -9,7 +9,6 @@ import { Track } from '../services/track.model';
   styleUrls: ['./player.component.sass']
 })
 export class PlayerComponent implements OnChanges, OnInit {
-  @Output() playerEvent: BehaviorSubject<string>;
   @Input() track: BehaviorSubject<Track>;
 
   public timeElapsed: string;
@@ -34,7 +33,6 @@ export class PlayerComponent implements OnChanges, OnInit {
       let nextTrack = changes['track'].currentValue;
       this.audioService.setCurrentTrack(nextTrack);
     }
-
   }
 
   public toggleAudio() {
