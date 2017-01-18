@@ -5,4 +5,13 @@
 </nav>
 <div class="container">
   <app-audio-playlist [playlist]="myPlaylist"></app-audio-playlist>
+  <!--<app-search-soundcloud></app-search-soundcloud>-->
+  <form>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon" id="sizing-addon1">@</span>
+      <input #query type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+      <button class="btn btn-warning" (click)="searchSoundCloud(query.value)">Search</button>
+    </div>
+  </form>
 </div>
+

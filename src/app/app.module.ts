@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AudioPlaylistModule } from './audio-playlist/audio-playlist.module';
+import { SoundCloudService } from './services/sound-cloud.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { AudioPlaylistModule } from './audio-playlist/audio-playlist.module';
     HttpModule,
     AudioPlaylistModule
   ],
-  providers: [],
+  providers: [SoundCloudService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

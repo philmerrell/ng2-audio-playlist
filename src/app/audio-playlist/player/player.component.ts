@@ -6,7 +6,7 @@ import { Track } from '../services/track.model';
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
-  styleUrls: ['./player.component.sass']
+  styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent implements OnChanges, OnInit {
   @Input() track: BehaviorSubject<Track>;
@@ -28,7 +28,6 @@ export class PlayerComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
     if (changes['track'].currentValue) {
       let nextTrack = changes['track'].currentValue;
       this.audioService.setCurrentTrack(nextTrack);

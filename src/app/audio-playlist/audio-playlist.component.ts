@@ -6,7 +6,7 @@ import { PlaylistService } from './services/playlist.service';
 @Component({
   selector: 'app-audio-playlist',
   templateUrl: './audio-playlist.component.html',
-  styleUrls: ['./audio-playlist.component.sass']
+  styleUrls: ['./audio-playlist.component.scss']
 })
 export class AudioPlaylistComponent implements OnInit {
   @Input() playlist: Track[];
