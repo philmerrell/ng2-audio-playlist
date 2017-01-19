@@ -11,7 +11,7 @@ export class AudioService {
     public percentElapsed: BehaviorSubject<number> = new BehaviorSubject(0);
     public percentLoaded: BehaviorSubject<number> = new BehaviorSubject(0);
     public playerStatus: BehaviorSubject<string> = new BehaviorSubject('paused');
-    public currentTrack: BehaviorSubject<Track> = new BehaviorSubject(new Track(null, null, null, null, null));
+    public currentTrack: BehaviorSubject<Track> = new BehaviorSubject(new Track(null, null, null, null));
 
     constructor() {
         this.audio = new Audio();

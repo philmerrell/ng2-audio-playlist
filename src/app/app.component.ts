@@ -12,7 +12,6 @@ declare var SC: any;
 export class AppComponent {
 
   public myPlaylist: Track[] = [
-    // new Track('http://s3.amazonaws.com/Treefort-Music-Fest/delicatesteve.mp3', 'Delicate Steve', 'Another Song', '', 0),
     new Track('http://s3.amazonaws.com/Treefort-Music-Fest/why.mp3', 'Why?', 'This Song', 'http://klfm.org/wp-content/uploads/2016/11/homepage_large.793356a6.jpg')
   ];
 
@@ -21,8 +20,13 @@ export class AppComponent {
   }
 
   getLargeImage(url) {
-    let image = url.replace('-large', '-t500x500')
-    return image;
+    if (url) {
+      let image = url.replace('-large', '-t500x500')
+      return image;
+    } else {
+      // TODO: return some default image... 
+      return null;
+    }
   }
 
   initializeSoundCloud() {
@@ -34,7 +38,6 @@ export class AppComponent {
   searchSoundCloud(query) {
     SC.get('/tracks', { q: query })
       .then((tracks) => {
-        console.log('Tracks: ', tracks);
         this.extractTracks(tracks);
       });
   }
