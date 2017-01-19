@@ -13,11 +13,16 @@ export class AppComponent {
 
   public myPlaylist: Track[] = [
     // new Track('http://s3.amazonaws.com/Treefort-Music-Fest/delicatesteve.mp3', 'Delicate Steve', 'Another Song', '', 0),
-    new Track('http://s3.amazonaws.com/Treefort-Music-Fest/why.mp3', 'Why?', 'This Song', 'http://klfm.org/wp-content/uploads/2016/11/homepage_large.793356a6.jpg', 1)
+    new Track('http://s3.amazonaws.com/Treefort-Music-Fest/why.mp3', 'Why?', 'This Song', 'http://klfm.org/wp-content/uploads/2016/11/homepage_large.793356a6.jpg')
   ];
 
   constructor(private soundCloud: SoundCloudService) {
     this.initializeSoundCloud();
+  }
+
+  getLargeImage(url) {
+    let image = url.replace('-large', '-t500x500')
+    return image;
   }
 
   initializeSoundCloud() {
@@ -37,7 +42,9 @@ export class AppComponent {
   extractTracks(tracks) {
     this.myPlaylist = [];
     for (let track of tracks) {
-      this.myPlaylist.push(new Track(track.stream_url + '?client_id=' + this.soundCloud.getApiKey(), track.user.username, track.title, track.artwork_url, 0));
+      let mp3Url = track.stream_url + '?client_id=' + this.soundCloud.getApiKey();
+      let image = this.getLargeImage(track.artwork_url);
+      this.myPlaylist.push(new Track(mp3Url, track.user.username, track.title, image));
     }
   }
 

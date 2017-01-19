@@ -7,12 +7,11 @@ export class Track {
     song: string;
     index: number;
 
-    constructor(url, artist, song, image, index) {
+    constructor(url, artist, song, image) {
         this.audioUrl = url;
         this.image = image;
         this.artist = artist;
         this.song = song;
-        this.index = index;
     }
 
 }
