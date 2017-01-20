@@ -1,3 +1,79 @@
+.audiobar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  padding: 0;
+  background: #f7f7f7;
+}
+
+.audiobar-layout {
+  display: table;
+
+  .audiobar-image {
+    display: table-cell;
+    vertical-align: top;
+    position: relative;
+    width: 1%;
+
+    img {
+      height: 60px;
+      width: 60px;
+    }
+  }
+
+  .audiobar-info-container {
+    display: table-cell;
+    vertical-align: top;
+    position: relative;
+
+    .audiobar-info {
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      padding: 13px 15px;
+
+      h3 {
+        font-size: 1rem;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      h4 {
+        font-size: 0.9rem;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1rem;
+      }
+    }
+  }
+  .audiobar-controls-container {
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+    width: 1%;
+
+    .audiobar-controls {
+      white-space: nowrap;
+
+      button {
+        border: 0;
+        background: transparent;
+        margin-right: 15px;
+        outline: none;
+      }
+    }
+  }
+  
+}
+
+
 @font-face {
   font-family: 'icomoon';
   src:  url('../../assets/fonts/icomoon.eot?3et2hx#iefix') format('embedded-opentype'),

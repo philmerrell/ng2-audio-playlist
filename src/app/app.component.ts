@@ -12,7 +12,7 @@ declare var SC: any;
 export class AppComponent {
 
   public myPlaylist: Track[] = [
-    new Track('http://s3.amazonaws.com/Treefort-Music-Fest/why.mp3', 'Why?', 'This Song', 'http://klfm.org/wp-content/uploads/2016/11/homepage_large.793356a6.jpg')
+    new Track('http://s3.amazonaws.com/Treefort-Music-Fest/why.mp3', 'Why?', 'This Song with an extremly long title part II', 'http://klfm.org/wp-content/uploads/2016/11/homepage_large.793356a6.jpg')
   ];
 
   constructor(private soundCloud: SoundCloudService) {
