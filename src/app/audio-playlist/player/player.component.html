@@ -16,8 +16,11 @@
   </div>
   <input type="range" min="0" max="100" (change)="seekAudio($event)" [value]="percentElapsed">
 </div>-->
-
 <div class="audiobar">
+  <div class="elapsed-container">
+    <div [style.width]="percentLoaded+'%'" class="percent-loaded"></div>
+    <div [style.width]="percentElapsed+'%'" class="percent-elapsed"></div>
+</div>
   <div class="audiobar-layout">
     <div class="audiobar-image">
       <img [src]="track.image">
