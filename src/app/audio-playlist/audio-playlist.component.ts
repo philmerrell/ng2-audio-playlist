@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/Rx';
 import { Track } from './services/track.model';
 import { AudioService } from './services/audio.service';
 import { PlaylistService } from './services/playlist.service';

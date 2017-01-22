@@ -4,7 +4,6 @@
   </div>
 </nav>
 <div class="container">
-  <!--<app-search-soundcloud></app-search-soundcloud>-->
   <form>
     <div class="input-group input-group-lg">
       <span class="input-group-addon" id="sizing-addon1"><img src="assets/soundcloud_black.png" height="30"></span>
@@ -12,6 +11,14 @@
       <button class="btn btn-warning" (click)="searchSoundCloud(query.value)">Search</button>
     </div>
   </form>
+</div>
+<div class="list-group">
+  <a href="#" *ngFor="let track of soundCloudResults" (click)="addTrack(track)" [class.active]="track === currentTrack" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ track.artist }}</h5>
+    </div>
+    <p class="mb-1">{{ track.song }}</p>
+  </a>
 </div>
 <app-audio-playlist [playlist]="myPlaylist"></app-audio-playlist>
 

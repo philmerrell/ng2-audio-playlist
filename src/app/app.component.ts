@@ -12,14 +12,16 @@ declare var SC: any;
 export class AppComponent {
 
   public myPlaylist: Track[] = [
-    new Track('http://s3.amazonaws.com/Treefort-Music-Fest/why.mp3', 'Why?', 'This Song with an extremly long title part II', 'http://klfm.org/wp-content/uploads/2016/11/homepage_large.793356a6.jpg')
+    new Track('https://api.soundcloud.com/tracks/62188129/stream?client_id=df942240e3e63f8e23596df0893eab2a', 'Mac Demarco', 'Ode to Viceroy', 'https://i1.sndcdn.com/artworks-000031540797-8io3vh-t500x500.jpg')
   ];
+
+  public soundCloudResults: Track[];
 
   constructor(private soundCloud: SoundCloudService) {
     this.initializeSoundCloud();
   }
 
-  getLargeImage(url) {
+  getLargeImage(url: string) {
     if (url) {
       let image = url.replace('-large', '-t500x500')
       return image;
@@ -35,19 +37,25 @@ export class AppComponent {
     });
   }
 
-  searchSoundCloud(query) {
+  searchSoundCloud(query: string) {
     SC.get('/tracks', { q: query })
       .then((tracks) => {
         this.extractTracks(tracks);
       });
   }
 
+  addTrack(track) {
+    this.myPlaylist.push(track);
+    console.log(this.myPlaylist);
+  }
+
   extractTracks(tracks) {
-    this.myPlaylist = [];
+    // this.myPlaylist = [];
+    this.soundCloudResults = [];
     for (let track of tracks) {
       let mp3Url = track.stream_url + '?client_id=' + this.soundCloud.getApiKey();
       let image = this.getLargeImage(track.artwork_url);
-      this.myPlaylist.push(new Track(mp3Url, track.user.username, track.title, image));
+      this.soundCloudResults.push(new Track(mp3Url, track.user.username, track.title, image));
     }
   }
 

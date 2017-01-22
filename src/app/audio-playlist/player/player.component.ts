@@ -69,4 +69,8 @@ export class PlayerComponent implements OnChanges, OnInit {
     let position = event.srcElement.value / (100 / this.audioService.getAudio().duration);
     this.audioService.seekAudio(position);
   }
+
+  public openPlaylist() {
+    console.log('Open Playlist');
+  }
 }
