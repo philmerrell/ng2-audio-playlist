@@ -23,7 +23,7 @@ export class AppComponent {
 
   getLargeImage(url: string) {
     if (url) {
-      let image = url.replace('-large', '-t500x500')
+      let image = url.replace('-large', '-t500x500');
       return image;
     } else {
       // TODO: return some default image... 

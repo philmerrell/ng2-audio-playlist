@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
 import { AudioService } from '../services/audio.service';
+import { PlayerPositionService } from '../services/player-position.service';
 import { Track } from '../services/track.model';
 
 @Component({
@@ -10,6 +11,7 @@ import { Track } from '../services/track.model';
 })
 export class PlayerComponent implements OnChanges, OnInit {
   @Input() track: BehaviorSubject<Track>;
+  @ViewChild('audioBar') audioBar;
 
   public timeElapsed: string;
   public timeRemaining: string;
@@ -17,7 +19,10 @@ export class PlayerComponent implements OnChanges, OnInit {
   public percentLoaded: number;
   public playerStatus: string;
 
-  constructor(private audioService: AudioService) { }
+  private audiobarVisible: boolean = false;
+  private parentHeight: number;
+
+  constructor(private audioService: AudioService, private positionService: PlayerPositionService) { }
 
   ngOnInit() {
     this.getPlayerStatus();
@@ -25,6 +30,7 @@ export class PlayerComponent implements OnChanges, OnInit {
     this.getTimeRemaining();
     this.getPercentLoaded();
     this.getPercentElapsed();
+    this.initPlayerPosition();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -32,6 +38,10 @@ export class PlayerComponent implements OnChanges, OnInit {
       let nextTrack = changes['track'].currentValue;
       this.audioService.setCurrentTrack(nextTrack);
     }
+  }
+
+  initPlayerPosition() {
+    this.parentHeight = this.positionService.getInnerHeight();
   }
 
   public toggleAudio() {
@@ -70,7 +80,21 @@ export class PlayerComponent implements OnChanges, OnInit {
     this.audioService.seekAudio(position);
   }
 
-  public openPlaylist() {
-    console.log('Open Playlist');
+  public toggleAudiobar() {
+    (this.audiobarVisible) ? this.closeAudiobar() : this.openAudiobar();
+    this.audiobarVisible = !this.audiobarVisible;
+  }
+
+  public openAudiobar() {
+    let audioBar = this.audioBar.nativeElement;
+    audioBar.style['transition'] = '300ms cubic-bezier(0.855, 0.005, 0.175, 1.2)';
+    audioBar.style['transform'] = 'translate3d(0, -' + (this.parentHeight) + 'px, 0)';
+    console.log('Open');
+  }
+
+  public closeAudiobar() {
+    let audioBar = this.audioBar.nativeElement;
+    audioBar.style['transition'] = '300ms cubic-bezier(0.855, 0.005, 0.175, 1.2)';
+    audioBar.style['transform'] = 'translate3d(0, 0, 0)';
   }
 }
