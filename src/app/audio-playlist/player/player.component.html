@@ -33,15 +33,11 @@
       <img [src]="track.image" width="70%" />
     </div>
     <div class="track-time-layout">
-      <div class="track-time-elapsed">
-          {{ timeElapsed }}
-      </div>
+      <div class="track-time-elapsed">{{ timeElapsed }}</div>
       <div class="track-time-spacer"></div>
-      <div class="track-time-remaining">
-        {{ timeRemaining }}
-      </div>
-        <!--<input type="range" min="0" max="100" width="70%" />-->
+      <div class="track-time-remaining">{{ timeRemaining }}</div>
     </div>
+      <input type="range" min="0" max="100" (change)="seekAudio($event)" [value]="percentElapsed" width="70%" />
     <div class="track-detail-info">
         <h1>{{ track.artist }}</h1>
         <h3>{{ track.song }}</h3>

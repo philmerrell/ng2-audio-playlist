@@ -87,14 +87,14 @@ export class PlayerComponent implements OnChanges, OnInit {
 
   public openAudiobar() {
     let audioBar = this.audioBar.nativeElement;
-    audioBar.style['transition'] = '300ms cubic-bezier(0.855, 0.005, 0.175, 1.2)';
+    audioBar.style['transition'] = '300ms cubic-bezier(0.855, 0.005, 0.175, 1)';
     audioBar.style['transform'] = 'translate3d(0, -' + (this.parentHeight) + 'px, 0)';
     console.log('Open');
   }
 
   public closeAudiobar() {
     let audioBar = this.audioBar.nativeElement;
-    audioBar.style['transition'] = '300ms cubic-bezier(0.855, 0.005, 0.175, 1.2)';
+    audioBar.style['transition'] = '300ms cubic-bezier(0.855, 0.005, 0.175, 1)';
     audioBar.style['transform'] = 'translate3d(0, 0, 0)';
   }
 }
