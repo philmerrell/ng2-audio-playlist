@@ -25,11 +25,19 @@
     </div>
   </div>
   <!-- TODO: Get height of relative parent container.-->
-  <div [style.height]="parentHeight+'px'" class="now-playing-container">
-    <button (click)="toggleAudiobar()">close</button>
-    <div style="height: 200px; background-position: center; background-size: cover;" [style.background]="'url('+track.image+')'"></div>
-      <div>
-          <h2>{{track.artist}}</h2>
-      </div>
+  <div [style.height.px]="parentHeight" class="track-detail-panel">
+    <input type="range" (change)="seekAudio($event)" [value]="percentElapsed" min="0" max="100" width="70%">
+    <div class="panel-controls">
+      <button (click)="toggleAudiobar()">close</button>
+    </div>
+    <div class="image-container" style="text-align: center;">
+      <img [src]="track.image" width="70%" />
+    </div>
+    <!--<div class="slider-container">-->
+    <!--</div>-->
+    <div class="track-detail-info">
+        <h1>{{ track.artist }}</h1>
+        <h3>{{ track.song }}</h3>
+    </div>
   </div>
 </div>
