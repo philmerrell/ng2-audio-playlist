@@ -95,20 +95,40 @@
     background-color: rgba(0,0,0,0.4);
 }
 
-// .track-detail-panel {
-//   .panel-controls {
-//     text-align: right;
-//   }
-//   .image-container {
-//     text-align: center;
-//   }
-//   .slider-container {
-//     text-align: center;
-//   }
-//   .track-detail-info {
-//     text-align: center;
-//   }
-// }
+.track-detail-panel {
+  .panel-controls {
+    text-align: right;
+  }
+  .image-container {
+    text-align: center;
+  }
+  .track-time-layout {
+    display: table;
+    padding: 10px;
+    .track-time-elapsed {
+      display: table-cell;
+      font-size: 0.8em;
+      vertical-align: top;
+      position: relative;
+      width: 1%;
+    }
+    .track-time-spacer {
+      display: table-cell;
+      vertical-align: top;
+      position: relative;
+    }
+    .track-time-remaining {
+      display: table-cell;
+      font-size: 0.8em;
+      vertical-align: top;
+      position: relative;
+      width: 1%;
+    }
+  }
+  .track-detail-info {
+    text-align: center;
+  }
+}
 
 
 @font-face {
