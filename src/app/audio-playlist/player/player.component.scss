@@ -96,6 +96,12 @@
 }
 
 .track-detail-panel {
+  button {
+    border: 0;
+    background: transparent;
+    outline: none;
+  }
+  
   .panel-controls {
     text-align: right;
   }
