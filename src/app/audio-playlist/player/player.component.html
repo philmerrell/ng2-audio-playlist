@@ -32,22 +32,30 @@
     <div class="image-container" style="text-align: center;">
       <img [src]="track.image" width="70%" />
     </div>
+    <div class="track-progress-slider">
+      <input type="range" min="0" max="100" (change)="seekAudio($event)" [value]="percentElapsed" width="70%" />
+    </div>
     <div class="track-time-layout">
       <div class="track-time-elapsed">{{ timeElapsed }}</div>
       <div class="track-time-spacer"></div>
       <div class="track-time-remaining">{{ timeRemaining }}</div>
     </div>
-      <input type="range" min="0" max="100" (change)="seekAudio($event)" [value]="percentElapsed" width="70%" />
     <div class="track-detail-info">
         <h1>{{ track.artist }}</h1>
         <h3>{{ track.song }}</h3>
     </div>
-    <div>
-      <button (click)="toggleAudio()" [ngSwitch]="playerStatus" [disabled]="playerStatus === 'loading'" type="button">
-        <div *ngSwitchCase="'paused'" class="icon-play" aria-hidden="true"></div>
-        <div *ngSwitchCase="'playing'" class="icon-pause" aria-hidden="true"></div>
-        <div *ngSwitchCase="'loading'" class="spinner icon-loading" aria-hidden="true"></div>
-      </button>
+    <div class="track-controls-layout">
+        <button [disabled]="playerStatus === 'loading'" type="button">
+          <div class="icon-rewind" aria-hidden="true"></div>
+        </button>
+        <button (click)="toggleAudio()" [ngSwitch]="playerStatus" [disabled]="playerStatus === 'loading'" type="button" class="controls-pp">
+          <div *ngSwitchCase="'paused'" class="icon-play" aria-hidden="true"></div>
+          <div *ngSwitchCase="'playing'" class="icon-pause" aria-hidden="true"></div>
+          <div *ngSwitchCase="'loading'" class="spinner icon-loading" aria-hidden="true"></div>
+        </button>
+        <button [disabled]="playerStatus === 'loading'" type="button">
+          <div class="icon-fastforward" aria-hidden="true"></div>
+        </button>
     </div>
   </div>
 </div>
