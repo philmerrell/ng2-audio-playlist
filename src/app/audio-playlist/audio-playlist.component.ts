@@ -13,19 +13,18 @@ export class AudioPlaylistComponent implements OnChanges, OnInit {
   @Input() playlist: Track[];
 
   public currentTrack: Track;
-  // private Status: { Queued, Initiated };
 
   constructor(private audioService: AudioService) { }
 
   ngOnInit() {
-    this.currentTrack = this.playlist[0];
     this.getPlayerStatus();
+    this.currentTrack = this.playlist[0];
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['playlist'].currentValue) {
-      let nextPlaylist = changes['playlist'].currentValue;
-      this.playlist = nextPlaylist;
+      let changedPlaylist = changes['playlist'].currentValue;
+      this.playlist = changedPlaylist;
     }
   }
 
@@ -39,16 +38,17 @@ export class AudioPlaylistComponent implements OnChanges, OnInit {
       });
   }
 
-  public playTrack(track) {
+  private playTrack(track) {
     this.currentTrack = track;
   }
 
-  public checkPlaylist() {
-    let progress = this.currentTrack.index + 1;
+  private checkPlaylist() {
+    let progress = this.playlist.indexOf(this.currentTrack) + 1;
+    console.log(progress);
     if (progress === this.playlist.length) {
       // stop audio 
     } else {
-      this.currentTrack = this.playlist[progress];
+      this.playTrack(this.playlist[progress]);
     }
   }
 
