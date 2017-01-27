@@ -14,7 +14,7 @@ export class AudioPlaylistComponent implements OnChanges, OnInit {
 
   public currentTrack: Track;
 
-  constructor(private audioService: AudioService) { }
+  constructor(private audioService: AudioService, private playlistService: PlaylistService) { }
 
   ngOnInit() {
     this.getPlayerStatus();
@@ -24,6 +24,7 @@ export class AudioPlaylistComponent implements OnChanges, OnInit {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['playlist'].currentValue) {
       let changedPlaylist = changes['playlist'].currentValue;
+      this.playlistService.setPlaylist(changedPlaylist);
       this.playlist = changedPlaylist;
     }
   }
@@ -44,7 +45,6 @@ export class AudioPlaylistComponent implements OnChanges, OnInit {
 
   private checkPlaylist() {
     let progress = this.playlist.indexOf(this.currentTrack) + 1;
-    console.log(progress);
     if (progress === this.playlist.length) {
       // stop audio 
     } else {

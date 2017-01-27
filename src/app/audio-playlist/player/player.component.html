@@ -1,27 +1,26 @@
 <div #audioBar class="audiobar" [style.bottom.px]="-parentHeight">
-  <div>
-    <div class="elapsed-container">
-      <div [style.width]="percentLoaded+'%'" class="percent-loaded"></div>
-      <div [style.width]="percentElapsed+'%'" class="percent-elapsed"></div>
+  <div class="elapsed-container">
+    <div [style.width.px]="percentLoaded" class="percent-loaded"></div>
+    <div [style.width.px]="percentElapsed" class="percent-elapsed"></div>
+  </div>
+  <div class="audiobar-layout">
+    <div (click)="toggleAudiobar()" class="audiobar-image">
+      <img [src]="track.image">
     </div>
-    <div class="audiobar-layout">
-      <div (click)="toggleAudiobar()" class="audiobar-image">
-        <img [src]="track.image">
+    <div (click)="toggleAudiobar()" class="audiobar-info-container">
+      <div class="audiobar-info">
+        <h3>{{ track.artist }}</h3>
+        <h4>{{ track.song }}</h4>
       </div>
-      <div (click)="toggleAudiobar()" class="audiobar-info-container">
-        <div class="audiobar-info">
-          <h3>{{ track.artist }}</h3>
-          <h4>{{ track.song }}</h4>
-        </div>
+    </div>
+    <div class="audiobar-controls-container">
+      <div class="audiobar-controls">
+        <button (click)="toggleAudio()" [ngSwitch]="playerStatus" [disabled]="playerStatus === 'loading'" type="button">
+          <div *ngSwitchCase="'paused'" class="icon-play" aria-hidden="true"></div>
+          <div *ngSwitchCase="'playing'" class="icon-pause" aria-hidden="true"></div>
+          <div *ngSwitchCase="'loading'" class="spinner icon-loading" aria-hidden="true"></div>
+        </button>
       </div>
-      <div class="audiobar-controls-container">
-        <div class="audiobar-controls">
-          <button (click)="toggleAudio()" [ngSwitch]="playerStatus" [disabled]="playerStatus === 'loading'" type="button">
-            <div *ngSwitchCase="'paused'" class="icon-play" aria-hidden="true"></div>
-            <div *ngSwitchCase="'playing'" class="icon-pause" aria-hidden="true"></div>
-            <div *ngSwitchCase="'loading'" class="spinner icon-loading" aria-hidden="true"></div>
-          </button>
-        </div>
     </div>
   </div>
   <!-- TODO: Get height of relative parent container.-->
@@ -45,7 +44,7 @@
         <h3>{{ track.song }}</h3>
     </div>
     <div class="track-controls-layout">
-        <button [disabled]="playerStatus === 'loading'" type="button">
+        <button (click)="previousTrack()" [disabled]="playerStatus === 'loading'" type="button">
           <div class="icon-rewind" aria-hidden="true"></div>
         </button>
         <button (click)="toggleAudio()" [ngSwitch]="playerStatus" [disabled]="playerStatus === 'loading'" type="button" class="controls-pp">
@@ -53,9 +52,14 @@
           <div *ngSwitchCase="'playing'" class="icon-pause" aria-hidden="true"></div>
           <div *ngSwitchCase="'loading'" class="spinner icon-loading" aria-hidden="true"></div>
         </button>
-        <button [disabled]="playerStatus === 'loading'" type="button">
+        <button (click)="nextTrack()" [disabled]="playerStatus === 'loading'" type="button">
           <div class="icon-fastforward" aria-hidden="true"></div>
         </button>
     </div>
   </div>
+  <!--<div class="playlist-container">
+    <div *ngFor="let track of playlist">
+      <h5>{{ track.artist }}</h5>
+    </div>
+  </div>-->
 </div>

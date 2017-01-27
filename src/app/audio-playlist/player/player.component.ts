@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, ViewChild }
 import { BehaviorSubject } from 'rxjs/Rx';
 import { AudioService } from '../services/audio.service';
 import { PlayerPositionService } from '../services/player-position.service';
+import { PlaylistService } from '../services/playlist.service'
 import { Track } from '../services/track.model';
 
 @Component({
@@ -18,11 +19,17 @@ export class PlayerComponent implements OnChanges, OnInit {
   public percentElapsed: number;
   public percentLoaded: number;
   public playerStatus: string;
+  public playlist: Track[];
+  public isLastTrack: boolean = false;
+  public isFirstTrack: boolean = false;
 
   private audiobarVisible: boolean = false;
+  private currentTrack: Track;
   private parentHeight: number;
 
-  constructor(private audioService: AudioService, private positionService: PlayerPositionService) { }
+  constructor(private audioService: AudioService,
+              private positionService: PlayerPositionService,
+              private playlistService: PlaylistService) { }
 
   ngOnInit() {
     this.getPlayerStatus();
@@ -30,12 +37,14 @@ export class PlayerComponent implements OnChanges, OnInit {
     this.getTimeRemaining();
     this.getPercentLoaded();
     this.getPercentElapsed();
+    this.getPlaylist();
     this.initPlayerPosition();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['track'].currentValue) {
       let nextTrack = changes['track'].currentValue;
+      this.currentTrack = nextTrack;
       this.audioService.setCurrentTrack(nextTrack);
     }
   }
@@ -75,6 +84,15 @@ export class PlayerComponent implements OnChanges, OnInit {
       .subscribe(status => this.playerStatus = status);
   }
 
+  private getPlaylist() {
+    this.playlistService.getPlaylist()
+      .subscribe(playlist => {
+        this.playlist = playlist;
+        let length = this.playlist.length;
+        let progress = this.playlist.indexOf(this.currentTrack);
+      });
+  }
+
   public seekAudio(event) {
     let position = event.srcElement.value / (100 / this.audioService.getAudio().duration);
     this.audioService.seekAudio(position);
@@ -89,7 +107,14 @@ export class PlayerComponent implements OnChanges, OnInit {
     let audioBar = this.audioBar.nativeElement;
     audioBar.style['transition'] = '300ms cubic-bezier(0.855, 0.005, 0.175, 1)';
     audioBar.style['transform'] = 'translate3d(0, -' + (this.parentHeight) + 'px, 0)';
-    console.log('Open');
+  }
+
+  public previousTrack() {
+
+  }
+
+  public nextTrack() {
+
   }
 
   public closeAudiobar() {

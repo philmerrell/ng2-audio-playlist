@@ -6,7 +6,7 @@ export class SoundCloudService {
   constructor() { }
 
   getApiKey() {
-    return 'insert-your-key-here';
+    return 'df942240e3e63f8e23596df0893eab2a';
   }
 
 }
