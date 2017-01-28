@@ -6,7 +6,6 @@
 <div class="container">
   <form>
     <div class="input-group input-group-lg">
-      <!--<span class="input-group-addon" id="sizing-addon1"><img src="assets/soundcloud_black.png" height="30"></span>-->
       <input #query type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon1">
       <button class="btn btn-warning" (click)="searchSoundCloud(query.value)">Search</button>
     </div>
@@ -19,6 +18,20 @@
     </div>
     <p class="mb-1">{{ track.song }}</p>
   </a>
+  <!--<div style="display: table; border: 1px solid black; height:  420px; width: 420px;">
+      <div style="border: 1px solid black; display: table-row; text-align: center; width: 100%; height: 50%;">
+        <div style="display: table-cell; border: 1px solid black; width: 100%; vertical-align: middle;">
+          <img src="https://i1.sndcdn.com/artworks-000031540797-8io3vh-t500x500.jpg" height="30%">
+        </div>
+      </div>
+      <div style="display: table-row; text-align: center; width: 100%; height: 50%; position: relative;">
+        <div style="vertical-align: middle; display: table-cell; border: 1px solid black; width: 100%;">
+          test
+        </div>
+      </div>
+  </div>-->
 </div>
 <app-audio-playlist [playlist]="myPlaylist"></app-audio-playlist>
+
+
 

@@ -28,8 +28,8 @@
     <div class="panel-controls">
       <button (click)="toggleAudiobar()">close</button>
     </div>
-    <div class="image-container" style="text-align: center;">
-      <img [src]="track.image" width="70%" />
+    <div [style.height.px]="parentHeight / 2" class="image-container">
+      <img [class.pause-state]="playerStatus === 'paused'" [class.play-state]="playerStatus === 'playing'" [src]="track.image" height="100%" />
     </div>
     <div class="track-progress-slider">
       <input type="range" min="0" max="100" (change)="seekAudio($event)" [value]="percentElapsed" width="70%" />
